@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formid: MyString
+  formname: MyString
+  details: MyText
+  processingday: 1
+
+two:
+  formid: MyString
+  formname: MyString
+  details: MyText
+  processingday: 1

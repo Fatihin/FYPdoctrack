@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Formid:</strong>
+  <%= @form.formid %>
+</p>
+
+<p>
+  <strong>Formname:</strong>
+  <%= @form.formname %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @form.details %>
+</p>
+
+<p>
+  <strong>Processingday:</strong>
+  <%= @form.processingday %>
+</p>
+
+<%= link_to 'Edit', edit_form_path(@form) %> |
+<%= link_to 'Back', forms_path %>

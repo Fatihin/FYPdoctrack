@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task.user %>
+</p>
+
+<p>
+  <strong>Form:</strong>
+  <%= @task.form %>
+</p>
+
+<p>
+  <strong>Form:</strong>
+  <%= @task.dayassign %>
+</p>
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

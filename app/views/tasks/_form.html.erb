@@ -1,0 +1,18 @@
+<%= simple_form_for(@task) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<% if current_user && current_user.has_role?(:admin) %>
+    <%= f.association :user, :label_method => :username, :value_method => :id%>
+
+    <%= f.association :form, :label_method => :formname, :value_method => :id %>
+    <%= f.input :dayassign %>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+     <% end %>
+<% end %>
+

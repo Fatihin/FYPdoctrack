@@ -1,0 +1,16 @@
+
+<%= simple_form_for document do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :attachment%>
+    <%= f.input :desc %>
+    <%= f.input :serialno %>
+    <%= f.input :datesubmit, as: :datetime%>
+    <%= f.association :form, :label_method => :formname, :value_method => :id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<div id="sidebar-wrapper">
+<ul class="sidebar-nav">
+<li class="sidebar-brand">
+<a href="#">
+<% if user_signed_in? %>
+Hi,<%= current_user.username %>
+<%end %>
+</a>
+</li>
+<li>
+<%= link_to 'Document', documents_path %>
+</li>
+<li><% if can? :manage, Form %>
+ <%= link_to 'Form', forms_path %>
+<% end %>
+</li>
+<li>
+<% if can? :manage, Task %>
+ <%= link_to 'Assign Task', tasks_path %>
+<% end %></li>
+<li>
+<%= link_to 'Events','#'%>
+</li>
+
+</ul>
+</div>

@@ -1,0 +1,14 @@
+<%= simple_form_for(@form) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :formid %>
+    <%= f.input :formname %>
+    <%= f.input :details %>
+    <%= f.input :processingday %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
