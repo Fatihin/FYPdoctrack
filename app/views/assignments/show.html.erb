@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request accept:</strong>
+  <%= @assignment.request_accept %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @assignment.location %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @assignment.status %>
+</p>
+
+<p>
+  <strong>Datecomplete:</strong>
+  <%= @assignment.datecomplete %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @assignment.task %>
+</p>
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>

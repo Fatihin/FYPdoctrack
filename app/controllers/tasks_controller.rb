@@ -4,11 +4,14 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
-    @forms = Form.all
-    @forms = Form.joins("INNER JOIN tasks ON tasks.form_id= forms.id").sum(:dayassign)
 
- 
+
+    @tasks = Task.all
+    if params[:search]
+    @tasks = Task.joins(:form).search(params[:search]).order("created_at DESC")
+    else
+      @tasks = Task.all.order('created_at DESC')
+    end
   end
 
   # GET /tasks/1
@@ -67,6 +70,15 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def calculatedayassign
+    @tasks = Task.all
+    @form = Form.joins(:tasks).where(:formid => '001').sum(:dayassign)
+    @form1 = Form.joins(:tasks).where(:formid => '002').sum(:dayassign)
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

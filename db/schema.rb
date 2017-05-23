@@ -10,18 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513155017) do
+ActiveRecord::Schema.define(version: 20170523010018) do
+
+  create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean  "request_accept"
+    t.string   "location"
+    t.string   "status"
+    t.datetime "datecomplete"
+    t.integer  "task_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["task_id"], name: "index_assignments_on_task_id", using: :btree
+  end
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "attachment"
     t.text     "desc",       limit: 65535
-    t.string   "serialno"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "user_id"
     t.integer  "form_id"
     t.datetime "datesubmit"
+    t.integer  "serialno"
     t.index ["form_id"], name: "index_documents_on_form_id", using: :btree
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
   end
@@ -80,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170513155017) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "assignments", "tasks"
   add_foreign_key "documents", "forms"
   add_foreign_key "documents", "users"
 end

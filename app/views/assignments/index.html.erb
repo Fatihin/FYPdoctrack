@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assignments</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Request accept</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Datecomplete</th>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignments.each do |assignment| %>
+      <tr>
+        <td><%= assignment.request_accept %></td>
+        <td><%= assignment.location %></td>
+        <td><%= assignment.status %></td>
+        <td><%= assignment.datecomplete %></td>
+        <td><%= assignment.task.try(:id) %></td>
+        <td><%= link_to 'Show', assignment %></td>
+        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Assignment', new_assignment_path %>

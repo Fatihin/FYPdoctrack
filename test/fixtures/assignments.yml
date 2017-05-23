@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request_accept: false
+  location: MyString
+  status: MyString
+  datecomplete: 2017-05-23 09:00:18
+  task: one
+
+two:
+  request_accept: false
+  location: MyString
+  status: MyString
+  datecomplete: 2017-05-23 09:00:18
+  task: two

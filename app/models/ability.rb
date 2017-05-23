@@ -7,10 +7,10 @@ class Ability
       can :manage, :all
     elsif user.staffhep?
       can :manage, Document
-      
+      can :read, Task
       
     else
-      can :create, Document, user_id:user.id 
+      can :manage, Document, user_id:user.id 
     end
 
     # Define abilities for the passed in user here. For example:
