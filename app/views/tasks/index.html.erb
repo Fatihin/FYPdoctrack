@@ -22,7 +22,7 @@
         <td><%= task.user.try(:iduser) %></td>
         <td><%= task.form.try(:formname) %></td>
         <td><%= task.dayassign %></td>
-         <%= link_to "task", :controller => "assignments", :action => "index" %>
+        <td><%= link_to "task", :controller => "assignments", :action => "index" , :task => task.id %></td>
         <td><%= link_to 'Show', task %>
         <%= link_to 'Edit', edit_task_path(task) %>
         <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

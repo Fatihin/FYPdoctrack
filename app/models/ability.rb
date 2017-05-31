@@ -7,7 +7,7 @@ class Ability
       can :manage, :all
     elsif user.staffhep?
       can :manage, Document
-      can :read, Task
+      can :manage, Task
       
     else
       can :manage, Document, user_id:user.id 

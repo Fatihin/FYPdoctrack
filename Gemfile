@@ -33,6 +33,10 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'rolify'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'chartkick', '~> 1.2.4'
+gem 'groupdate', '~> 2.1.1'
+gem 'active_median', '~> 0.1.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
