@@ -5,8 +5,8 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
 
+    @tasks = Task.where(user_id: current_user)
 
-    @tasks = Task.all
     if params[:search]
     @tasks = Task.joins(:form).search(params[:search]).order("created_at DESC")
     else

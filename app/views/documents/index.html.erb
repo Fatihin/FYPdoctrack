@@ -28,8 +28,11 @@
         <td><%= document.datesubmit %></td>
         <td><%= document.user.try(:iduser) %></td>
         <td><%= link_to 'Show', document , class: "btn btn-info"%>
-        <%= link_to 'Edit', edit_document_path(document), class: "btn  btn-warning" %>
-        <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          <% if can? :manage, Form %>
+            <%= link_to 'Edit', edit_document_path(document), class: "btn  btn-warning" %>
+            <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

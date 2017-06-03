@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   resources :documents
 
  authenticated :user, ->(u) { u.has_role?(:admin) } do
-  root to: "dashboard#index", as: :manager_root
+  root to: "home#index", as: :manager_root
 end
 
 authenticated :user, ->(u) { u.has_role?(:staffhep) } do
   root to: "dashboard#index", as: :employee_root
 end
 
-root to: 'home#index'
+root to: 'documents#index'
 
 end

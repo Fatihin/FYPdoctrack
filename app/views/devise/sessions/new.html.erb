@@ -1,13 +1,23 @@
+<style>
 
+	body {
+background-image: url(/assets/bglogin.jpg);  
+background-size: cover; 
+}
+
+</style>
 <%= flash_messages %>
+
+
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="login-page">
   <div class="form">
-    <%= f.input :iduser %>
-    <%= f.input :password %>
+    <%= f.input :iduser, :label => "ID staff / Matrix No" %>
+    <%= f.input :password, prompt:" Password" %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-    <%= f.button :submit, "Log in"%>
-  
+    <%= f.button :submit, "Log in", :class => "btn btn-success"%>
+   <br> <%= link_to "New User ?", new_user_registration_path %>
+  	
   </div>
   </div>
 <% end %>

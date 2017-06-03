@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   	@document = @documents.joins(:form)
   	@task = Task.all
 	@t = @task.joins(:user,:form)
-
+	@assignment = Assignment.all
   end
 end

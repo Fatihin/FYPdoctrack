@@ -10,7 +10,8 @@ class Ability
       can :manage, Task
       
     else
-      can :manage, Document, user_id:user.id 
+      can :create, Document, user_id:user.id 
+      can :read, Document, user_id:user.id
     end
 
     # Define abilities for the passed in user here. For example:

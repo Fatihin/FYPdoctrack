@@ -1,10 +1,10 @@
 class DocumentsController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show]
-load_and_authorize_resource
+ load_and_authorize_resource
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = Document.where(user_id: current_user)
     @form = Form.all
   end
 
@@ -13,6 +13,7 @@ load_and_authorize_resource
   def show
     @document = Document.find(params[:id])
   end
+   
 
   # GET /documents/new
   def new

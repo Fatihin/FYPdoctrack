@@ -1,28 +1,45 @@
-<p id="notice"><%= notice %></p>
+<%= flash_messages %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @document.title %>
-</p>
 
-<p>
-  <strong>Attachment:</strong>
-  <%= @document.attachment %>
-</p>
+<%= image_tag("images.png", size: "70x70") %>
+<h4> Document Tracking System for FSKM ,UiTM Shah Alam</h4>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @document.desc %>
-</p>
 
-<p>
-  <strong>Serialno:</strong>
-  <%= @document.serialno %>
-</p>
-<p>
-  <strong>Date Submit:</strong>
-  <%= @document.datesubmit%>
-</p>
+  <table class="table table-bordered">
+    <tr>
+      <th>Serialno</th>
+      <td><%= @document.serialno %></td>
+    </tr>
 
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+    <tr>
+      <th>Title</th>
+      <td><%= @document.title %></td>
+    </tr>
+
+    <tr>
+      <th>Attachment</th>
+       <td><%= @document.attachment %></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= @document.desc %></td>
+    </tr>
+
+    <tr>
+      <th>Form</th>
+      <td><%= @document.form.try(:formname)%></td>
+    </tr>
+    <tr>
+      <th>Date Submit</th>
+      <td><%= @document.datesubmit %></td>
+    </tr>
+    <tr>
+      <th>ID user </th>
+        <td><%= @document.user.try(:iduser) %></td>
+    </tr>
+
+  </table>
+
+  <h5> Print this detail for your references </h5>
+
+<p id="pdf_link"><%= link_to "Download Document (PDF)", document_path(@document, :format => "pdf") %></p>
