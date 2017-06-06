@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
 
+
     @tasks = Task.where(user_id: current_user)
 
     if params[:search]
@@ -23,6 +24,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @user = User.all
 
   end
 
@@ -88,6 +90,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:user_id, :form_id ,:dayassign)
+      params.require(:task).permit(:user_id, :form_id ,:dayassign, :datetocomplete)
     end
 end

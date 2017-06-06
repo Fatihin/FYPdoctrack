@@ -16,4 +16,11 @@
     <h3>Task complete by day</h3>
     <%= line_chart @assignment.group(:datecomplete).count, discrete: true %>
   </div>
+
+  <div class="col-xs-6">
+    <h3>Total User Register by date</h3>
+    <%= line_chart @user.group("DATE(created_at)") .count %>
+
+
+  </div>
 </div>

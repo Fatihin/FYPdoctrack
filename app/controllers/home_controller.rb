@@ -5,5 +5,6 @@ class HomeController < ApplicationController
   	@task = Task.all
 	@t = @task.joins(:user,:form)
 	@assignment = Assignment.all
+	@user = User.all
   end
 end

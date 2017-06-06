@@ -9,31 +9,46 @@ Hi,<%= current_user.username %>
 </li>
 
 <li>
-<%= link_to 'Submit Document', new_document_path %>
+	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
+	<%= link_to 'Submit Document', new_document_path %>
+	<% end %>
 </li>
 
 <li>
-<%= link_to 'Previous Document Submitted', documents_path %>
+	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
+	<%= link_to 'Previous Document Submitted', documents_path %>
+	<% end %>
 </li>
 
 <li>
-<% if current_user.try(:admin?) %>
-<%= link_to "Users", new_document_path  %>
-<% end %> 
+	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
+	<%= link_to 'Track Document','#'%>
+	<% end %>
+</li>
+
+<li>
+	<% if current_user.try(:admin?) %>
+	<%= link_to "List of Form", forms_path  %>
+	<% end %> 
+</li>
+
+<li>
+	<% if current_user.try(:admin?) %>
+	<%= link_to "List of Document Submitted", documents_path  %>
+	<% end %> 
 </li>
 
 
-
-<li><% if can? :manage, Form %>
- <%= link_to 'Form', forms_path %>
-<% end %>
+<li>
+	<% if current_user.try(:admin?) %>
+ 	<%= link_to 'Assign Task', tasks_path %>
+	<% end %>
 </li>
+
 <li>
-<% if can? :manage, Task %>
- <%= link_to 'Assign Task', tasks_path %>
-<% end %></li>
-<li>
-<%= link_to 'Track Document','#'%>
+	<% if current_user.try(:staffhep?) %>
+ 	<%= link_to 'Assignment', tasks_path%>
+	<% end %>
 </li>
 
 </ul>

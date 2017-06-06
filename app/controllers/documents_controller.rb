@@ -4,7 +4,13 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.where(user_id: current_user)
+  
+    if can? :manage, Document
+       @documents = Document.all
+
+     else
+        @documents = Document.where(user_id: current_user)
+    end 
     @form = Form.all
   end
 

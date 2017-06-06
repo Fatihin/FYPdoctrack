@@ -3,10 +3,12 @@
 
   <div class="form-inputs">
   	<% if current_user && current_user.has_role?(:admin) %>
-    <%= f.association :user, :label_method => :username, :value_method => :id%>
+
+    <%=f.association :user, :as => :collection_select, collection: User.with_any_role(:user, :staffhep), :input_html => {:class => "input-small"}, :label => "Staff Involved", :label_method => :username %>
 
     <%= f.association :form, :label_method => :formname, :value_method => :id %>
     <%= f.input :dayassign %>
+    <%= f.input :datetocomplete %>
   </div>
 
 

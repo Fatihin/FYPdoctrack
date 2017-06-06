@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboardstaff/index'
+
   resources :assignments
   get 'home/index'
 
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
 end
 
 authenticated :user, ->(u) { u.has_role?(:staffhep) } do
-  root to: "dashboard#index", as: :employee_root
+  root to: "dashboardstaff#index", as: :employee_root
 end
 
 root to: 'documents#index'

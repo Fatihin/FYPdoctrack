@@ -5,9 +5,9 @@ class AssignmentsController < ApplicationController
   # GET /assignments.json
   def index
     @task = Task.find(params[:task])
-
     @assignments = @task.assignments
-   
+    
+
   end
 
   # GET /assignments/1
