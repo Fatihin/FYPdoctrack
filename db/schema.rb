@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605173214) do
+ActiveRecord::Schema.define(version: 20170611192613) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "request_accept"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20170605173214) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["task_id"], name: "index_assignments_on_task_id", using: :btree
+  end
+
+  create_table "document_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "document_id"
+    t.integer  "task_id"
   end
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -59,10 +66,12 @@ ActiveRecord::Schema.define(version: 20170605173214) do
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "form_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "dayassign"
-    t.date     "datetocomplete"
+    t.integer  "document_id"
+    t.string   "level"
+    t.index ["document_id"], name: "index_tasks_on_document_id", using: :btree
     t.index ["form_id"], name: "index_tasks_on_form_id", using: :btree
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
@@ -95,4 +104,5 @@ ActiveRecord::Schema.define(version: 20170605173214) do
   add_foreign_key "assignments", "tasks"
   add_foreign_key "documents", "forms"
   add_foreign_key "documents", "users"
+  add_foreign_key "tasks", "documents"
 end

@@ -22,9 +22,9 @@
         <td><%= assignment.status %></td>
         <td><%= assignment.datecomplete %></td>
         <td><%= assignment.task.try(:id) %></td>
-        <td><%= link_to 'Show', assignment %></td>
-        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "Show", task_assignments_path%></td>
+        <td><%= link_to 'Edit', edit_task_assignment_path(@task,assignment) %></td>
+        <td><%= link_to 'Destroy', task_assignments_path(@task,@assignment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Assignment', new_assignment_path %>
+<%= link_to 'New Assignment', new_task_assignment_path %>

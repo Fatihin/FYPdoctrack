@@ -7,8 +7,15 @@
     <%=f.association :user, :as => :collection_select, collection: User.with_any_role(:user, :staffhep), :input_html => {:class => "input-small"}, :label => "Staff Involved", :label_method => :username %>
 
     <%= f.association :form, :label_method => :formname, :value_method => :id %>
+    <%= f.input :level, 
+          :collection => [['1', 'First Level'], ['2', 'Second Level'], ['3', 'Third Level'],['4', 'Fouth Level']], 
+          :label_method => :last, 
+          :value_method => :first,
+          :as => :radio_buttons, 
+          :item_wrapper_class => 'inline',
+          :checked => true%>
     <%= f.input :dayassign %>
-    <%= f.input :datetocomplete %>
+
   </div>
 
 

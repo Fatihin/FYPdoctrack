@@ -9,11 +9,11 @@
       <th>Serialno</th>
       <th>Title</th>
       <th>Attachment</th>
-      <th>Description</th>
       <th>Form</th>
       <th>Date Submit</th>
-      <th>ID user </th>
+      <th></th>
       <th >Options</th>
+      
     </tr>
   </thead>
 
@@ -23,10 +23,9 @@
         <td><%= document.serialno %></td>
         <td><%= document.title %></td>
         <td><%= link_to "Download Document", document.attachment_url %></td>
-        <td><%= document.desc %></td>
         <td><%= document.form.try(:formname)%></td>
         <td><%= document.datesubmit %></td>
-        <td><%= document.user.try(:iduser) %></td>
+          <td><%= link_to "More", :controller => "documents", :action => "moreinfodoc" ,:id => document.id %></td>
         <td><%= link_to 'Show', document , class: "btn btn-info"%>
           <% if can? :manage, Form %>
             <%= link_to 'Edit', edit_document_path(document), class: "btn  btn-warning" %>

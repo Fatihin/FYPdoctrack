@@ -1,43 +1,17 @@
-<%= flash_messages %>
-
-
-
-<h1>Tasks</h1>
-<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-<%= submit_tag "Search" %>
-<% end %>
 
 <table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Staff Handle</th>
-      <th>Form</th>
-      <th>Day Handle</th> 
-      <th>Date to complete task</th>
-      <th>Countdown </th>
-      <th></th>
-    </tr>
-  </thead>
-
- <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.user.try(:iduser) %></td>
-        <td><%= task.form.try(:formname) %></td>
-        <td><%= task.dayassign %></td>
-        <td><%= task.datetocomplete %></td>
-        <td><%= (task.datetocomplete - Date.today).to_i%></td>
-        <td><%= link_to "task", :controller => "assignments", :action => "index" , :task => task.id %></td>
-        <td><%= link_to 'Show', task %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<tr>
+	<th>Document </th>
+	<th>Type of Document</th>
+	<th>Level</th>
+</tr>
+	<% @doctask.each do |dt| %>
+<tr>
+	<td><%= dt.document.try(:serialno) %></td>
+	<td><%= dt.task.form.try(:formname) %></td>	
+	<td><%= dt.task.try(:level) %></td>
+</tr>
+<%end %>
 </table>
-<hr>
 
 
-
-<%= link_to 'New Task', new_task_path %>

@@ -1,13 +1,13 @@
 class DocumentsController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show]
  load_and_authorize_resource
+ skip_authorize_resource :only => [:moreinfodoc, :trackdoc]
   # GET /documents
   # GET /documents.json
   def index
   
     if can? :manage, Document
        @documents = Document.all
-
      else
         @documents = Document.where(user_id: current_user)
     end 
@@ -36,6 +36,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.user = current_user
+
       if @document.save
          redirect_to @document, notice: 'Document was successfully created.' 
         
@@ -63,6 +64,23 @@ class DocumentsController < ApplicationController
     @document.destroy
       redirect_to documents_url, notice: 'Document was successfully destroyed.' 
   end
+
+  def moreinfodoc
+     @docform = @document.form
+     @formtask = @docform.tasks
+   
+  end
+
+  def trackdoc
+    @doctask = DocumentTask.joins(:document).where("documents.user_id =?",current_user)
+     @documents = Document.where(user_id: current_user)
+     if params[:search]
+        @documents = Document.search(params[:search]).order("created_at DESC")
+      else
+      @documents = Document.where(user_id: current_user).order('created_at DESC')
+     end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

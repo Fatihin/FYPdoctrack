@@ -1,37 +1,42 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /assignments
   # GET /assignments.json
   def index
-    @task = Task.find(params[:task])
+    @task = Task.find(params[:task_id])
     @assignments = @task.assignments
-    
-
   end
 
   # GET /assignments/1
   # GET /assignments/1.json
   def show
+    
+
   end
 
   # GET /assignments/new
   def new
+    @task = Task.find(params[:task_id])
     @assignment = Assignment.new
+
   end
 
   # GET /assignments/1/edit
   def edit
+    @task = Task.find(params[:task_id])
+    @assignment = Assignment.find(params[:id])
+
   end
 
   # POST /assignments
   # POST /assignments.json
   def create
-    @assignment = Assignment.new(assignment_params)
+    @task = Task.find(params[:task_id])
+    @assignment = @task.assignments.new(assignment_params)
 
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to task_assignments_path, notice: 'Assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
       else
         format.html { render :new }
@@ -44,8 +49,8 @@ class AssignmentsController < ApplicationController
   # PATCH/PUT /assignments/1.json
   def update
     respond_to do |format|
-      if @assignment.update(assignment_params)
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
+      if @task.assignments.update(assignment_params)
+        format.html { redirect_to assignment_params, notice: 'Assignment was successfully updated.' }
         format.json { render :show, status: :ok, location: @assignment }
       else
         format.html { render :edit }
@@ -57,9 +62,10 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1
   # DELETE /assignments/1.json
   def destroy
-    @assignment.destroy
+    @task.assignments.destroy
+
     respond_to do |format|
-      format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
+      format.html { redirect_to task_assignments_path(@assignment,@task), notice: 'Assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

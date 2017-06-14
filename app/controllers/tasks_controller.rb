@@ -1,13 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource :task
   # GET /tasks
   # GET /tasks.json
   def index
-
-
     @tasks = Task.where(user_id: current_user)
-
     if params[:search]
     @tasks = Task.joins(:form).search(params[:search]).order("created_at DESC")
     else
@@ -19,6 +16,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
+    @assignments = @task.assignments
   end
 
   # GET /tasks/new
@@ -36,6 +34,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+    authorize! :create, @task
     @task = Task.new(task_params)
 
     respond_to do |format|
@@ -75,8 +74,7 @@ class TasksController < ApplicationController
 
   def calculatedayassign
     @tasks = Task.all
-    @form = Form.joins(:tasks).where(:formid => '001').sum(:dayassign)
-    @form1 = Form.joins(:tasks).where(:formid => '002').sum(:dayassign)
+    @form = Form.joins(:tasks)
   end
 
 
@@ -90,6 +88,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:user_id, :form_id ,:dayassign, :datetocomplete)
+      params.require(:task).permit(:user_id, :form_id ,:dayassign, :level)
     end
 end

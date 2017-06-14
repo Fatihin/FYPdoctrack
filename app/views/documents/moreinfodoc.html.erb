@@ -1,0 +1,16 @@
+<table>
+	<tr><th>Staff Involved</th>
+		<th>Assign</th>
+
+	</tr>
+
+	<% @formtask.each do |d| %>
+		<tr><td><%= d.user.try(:username) %><td>
+
+		<% d.assignments.each do |a| %>
+		<td><%= a.location %></td>
+		<%end %>
+	<% end %>
+
+	</tr>
+</table>
