@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611192613) do
+ActiveRecord::Schema.define(version: 20170619144407) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "request_accept"
@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20170611192613) do
     t.string   "status"
     t.datetime "datecomplete"
     t.integer  "task_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "document_task_id"
+    t.index ["document_task_id"], name: "index_assignments_on_document_task_id", using: :btree
     t.index ["task_id"], name: "index_assignments_on_task_id", using: :btree
   end
 
@@ -39,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170611192613) do
     t.integer  "user_id"
     t.integer  "form_id"
     t.datetime "datesubmit"
-    t.integer  "serialno"
+    t.bigint   "serialno"
     t.index ["form_id"], name: "index_documents_on_form_id", using: :btree
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
   end
@@ -47,10 +49,9 @@ ActiveRecord::Schema.define(version: 20170611192613) do
   create_table "forms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "formid"
     t.string   "formname"
-    t.text     "details",       limit: 65535
-    t.integer  "processingday"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "attachment"
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -66,12 +67,10 @@ ActiveRecord::Schema.define(version: 20170611192613) do
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "form_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "dayassign"
-    t.integer  "document_id"
     t.string   "level"
-    t.index ["document_id"], name: "index_tasks_on_document_id", using: :btree
     t.index ["form_id"], name: "index_tasks_on_form_id", using: :btree
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
@@ -101,8 +100,8 @@ ActiveRecord::Schema.define(version: 20170611192613) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "assignments", "document_tasks"
   add_foreign_key "assignments", "tasks"
   add_foreign_key "documents", "forms"
   add_foreign_key "documents", "users"
-  add_foreign_key "tasks", "documents"
 end

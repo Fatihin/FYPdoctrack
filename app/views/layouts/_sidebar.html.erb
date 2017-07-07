@@ -53,9 +53,15 @@ Hi,<%= current_user.username %>
 
 <li>
 	<% if current_user.try(:staffhep?) %>
- 	<%= link_to 'Assignment', tasks_path%>
+ 	<%= link_to 'Task', dashboardstaff_homestaff_path%>
 	<% end %>
 </li>
+<li>
+	<% if current_user.try(:staffhep?) %>
+ 	<%= link_to 'Document handle', dashboardstaff_index_path%>
+	<% end %>
+</li>
+
 
 </ul>
 </div>

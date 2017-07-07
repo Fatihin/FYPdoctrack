@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'dashboardstaff/index'
+  get 'dashboardstaff/homestaff'
 
   
   get 'home/index'
@@ -15,14 +16,24 @@ Rails.application.routes.draw do
   devise_for :users
   resources :documents
 
- authenticated :user, ->(u) { u.has_role?(:admin) } do
-  root to: "home#index", as: :manager_root
-end
 
-authenticated :user, ->(u) { u.has_role?(:staffhep) } do
-  root to: "dashboardstaff#index", as: :employee_root
-end
+  devise_scope :user do
+    authenticated :user, ->(u) { u.has_role?(:admin) } do
+      root to: "home#index", as: :manager_root
+    end
 
-root to: 'documents#index'
+    authenticated :user, ->(u) { u.has_role?(:staffhep) } do
+      root to: "dashboardstaff#homestaff", as: :employee_root
+    end
+     authenticated :user do
+      root to: 'documents#index'
+    end
+
+    unauthenticated do
+      root to: 'devise/sessions#new', as: 'unauthenticated_root'
+    end
+
+  end 
+
 
 end

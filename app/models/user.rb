@@ -18,4 +18,6 @@ class User < ApplicationRecord
   has_role?(:staffhep)
   end 
 
+
+
 end

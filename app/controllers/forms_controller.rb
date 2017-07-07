@@ -11,9 +11,7 @@ class FormsController < ApplicationController
 
   # GET /forms/1
   # GET /forms/1.json
-  def show
-    @form = Form.find(params[:id])
-  end
+  
 
   # GET /forms/new
   def new
@@ -75,6 +73,6 @@ class FormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params.require(:form).permit(:formid, :formname, :details, :processingday)
+      params.require(:form).permit(:formid, :formname, :attachment)
     end
 end

@@ -1,27 +1,32 @@
-<%= form_tag(documents_trackdoc_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-<%= submit_tag "Search" %>
+<%= form_tag(documents_trackdoc_path, :method => "get", id: "search-form" , class: 'form-inline') do %>
+<%= text_field_tag :search, params[:search], placeholder: "Track Your Document" , :class =>'form-control'%>
+<%= submit_tag "Search" , class: "btn btn-primary"  %>
 <% end %>
+
+
 
 <h1>Documents Details</h1>
 
 
 <table class="table table-striped table-hover ">
-<tr>
-	<th>Document </th>
-	<th>Type of Document</th>
-	<th>Level</th>
-	<th>Staff Handle</th>
-	<th>Location</th>
-</tr>
-	<% @doctask.each do |dt| %>
-<tr>
-	<td><%= dt.document.try(:serialno) %></td>
-	<td><%= dt.task.form.try(:formname) %></td>	
-	<td><%= dt.task.try(:level) %></td>
-	<td><%= dt.task.user.try(:username)%></td>
-	<td><%= dt.task.assignments.try(:location)%></td>
-</tr>
-<%end %>
+<% @documents.each do |document| %>
+      <tr>
+        <td><%= document.serialno %></td>
+        <td><%= document.title %></td>
+        <td><%= link_to "Download Document", document.attachment_url %></td>
+        <td><%= document.form.try(:formname)%></td>
+        <td><%= document.datesubmit %></td>
+      
+        <td><%= link_to "More", :controller => "documents", :action => "moreinfodoc" ,:id => document.id , :class => "btn btn-info" %></td>
+       
+        <td><%= link_to 'Show', document , class: "btn btn-info"%>
+          <% if can? :manage, Form %>
+            <%= link_to 'Edit', edit_document_path(document), class: "btn  btn-warning" %>
+            <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
 </table>
+
 

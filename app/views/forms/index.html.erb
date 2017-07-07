@@ -6,10 +6,9 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>Formid</th>
-      <th>Formname</th>
-      <th>Details</th>
-      <th>Processingday</th>
+      <th>Form ID</th>
+      <th>Form Name</th>
+      <th>Attachment</th>
       <th>Options</th>
     </tr>
   </thead>
@@ -19,9 +18,8 @@
       <tr>
         <td><%= form.formid %></td>
         <td><%= form.formname %></td>
-        <td><%= form.details %></td>
-        <td><%= form.processingday %></td>
-        <td><%= link_to 'Show', form , class: "btn btn-info" %>
+       <td><%= link_to "Download Document", form.attachment_url %></td>
+        <td>
         <%= link_to 'Edit', edit_form_path(form) , class: "btn  btn-warning"  %>
         <%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %></td>
       </tr>
@@ -31,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Form', new_form_path %>
+<%= link_to 'New Form', new_form_path ,class: "btn btn-primary"%>

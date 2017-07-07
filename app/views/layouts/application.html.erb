@@ -14,7 +14,9 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
+    <% if user_signed_in? %>
   	<%= render 'layouts/header'%>
+    <%end%>
   	 
 	<!-- Sidebar -->
 <% if current_user.present? %>

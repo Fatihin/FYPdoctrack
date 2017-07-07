@@ -68,17 +68,18 @@ class DocumentsController < ApplicationController
   def moreinfodoc
      @docform = @document.form
      @formtask = @docform.tasks
+
    
   end
 
   def trackdoc
-    @doctask = DocumentTask.joins(:document).where("documents.user_id =?",current_user)
-     @documents = Document.where(user_id: current_user)
-     if params[:search]
+      @doctask = DocumentTask.joins(:document).where("documents.user_id =?",current_user)
+      @documents = Document.where(user_id: current_user)
+      if params[:search]
         @documents = Document.search(params[:search]).order("created_at DESC")
       else
-      @documents = Document.where(user_id: current_user).order('created_at DESC')
-     end
+        @documents = Document.where(user_id: current_user).order('created_at DESC')
+      end
   end
 
 
@@ -90,6 +91,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :attachment, :desc, :serialno, :datesubmit, :form_id)
+      params.require(:document).permit(:title, :attachment, :desc, :serialno, :datesubmit, :form_id, :task_ids => [])
     end
 end

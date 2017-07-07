@@ -10,7 +10,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    
+    @task = Task.find(params[:task_id])
+    @assignment = @task.assignments.first
 
   end
 
@@ -48,8 +49,10 @@ class AssignmentsController < ApplicationController
   # PATCH/PUT /assignments/1
   # PATCH/PUT /assignments/1.json
   def update
+    @task = Task.find(params[:task_id])
+    @assignment = @task.assignments
     respond_to do |format|
-      if @task.assignments.update(assignment_params)
+      if @assignment.update(assignment_params)
         format.html { redirect_to assignment_params, notice: 'Assignment was successfully updated.' }
         format.json { render :show, status: :ok, location: @assignment }
       else
@@ -62,12 +65,11 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1
   # DELETE /assignments/1.json
   def destroy
-    @task.assignments.destroy
+    @task = Task.find(params[:task_id])
+    @assignment = @task.assignments
+    @assignment.destroy
+       redirect_to task_assignments_url, notice: 'Assignment was successfully destroyed.' 
 
-    respond_to do |format|
-      format.html { redirect_to task_assignments_path(@assignment,@task), notice: 'Assignment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -78,6 +80,6 @@ class AssignmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assignment_params
-      params.require(:assignment).permit(:request_accept, :location, :status, :datecomplete, :task_id)
+      params.require(:assignment).permit(:request_accept, :location, :status, :datecomplete, :task_id, :document_task_id)
     end
 end
