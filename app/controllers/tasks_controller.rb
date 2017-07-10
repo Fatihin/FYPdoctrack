@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
-    @assignments = @task.assignments
+   
   end
 
   # GET /tasks/new

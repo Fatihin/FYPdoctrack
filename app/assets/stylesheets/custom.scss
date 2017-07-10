@@ -10,6 +10,7 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 60px;
+
     
 }
 
@@ -34,28 +35,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 2;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
- 
-}
-
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+    font-family: "Arial";
 }
-
-
 /* header */
 
 #logo {
@@ -72,7 +54,31 @@ p {
     text-decoration: none;
   }
 }
+#head {
+  float: right;
+  margin-right: 10px;
+  font-size: 1.1em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
 
+.navbar-custom {
+    color: #000000;
+    background-color: #009999;
+}
+
+.thead-inverse {
+color: #000000;
+    background-color: #d6f5f5;
+  
+}
 /* footer */
 
 footer {
@@ -113,13 +119,13 @@ footer {
 
 #sidebar-wrapper {
   z-index: 1000;
-  position: fixed;
+  position: absolute;
   left: 250px;
   width: 0;
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+  background:  #5c8a8a;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -154,14 +160,18 @@ list-style: none;
 }
 
 .sidebar-nav li {
-text-indent: 20px;
+
+text-indent: 15px;
 line-height: 40px;
 }
 
 .sidebar-nav li a {
 display: block;
+float: left;
 text-decoration: none;
-color: #999999;
+color: white;
+font-weight: bold;
+font-size: 15px;
 }
 
 .sidebar-nav li a:hover {
@@ -177,17 +187,18 @@ text-decoration: none;
 
 .sidebar-nav > .sidebar-brand {
 height: 65px;
-font-size: 18px;
+font-size: 19px;
 line-height: 60px;
 }
 
 .sidebar-nav > .sidebar-brand a {
-color: #999999;
+color: white;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
 color: #fff;
 background: none;
+
 }
 
 

@@ -1,7 +1,8 @@
 <%= flash_messages %>
 
-<table class="table table-striped table-hover ">
-  <thead>
+
+<table class="table table-striped table-bordered ">
+   <thead class="thead-inverse">
     <tr>
       <th>Staff ID</th>
       <th>Staff Name</th>
@@ -18,10 +19,10 @@
       <tr>
         <td><%= task.user.try(:iduser) %></td>
         <td><%= task.user.try(:username) %></td>
-        <td><%= link_to (task.form.try(:formname)) , :controller => "dashboardstaff", :action => "index" ,:form => task.form.id %></td>
+        <td><%= link_to (task.form.try(:formname)) ,  dashboardstaff_index_path(:form => task.form.id)%></td>
         <td><%= task.level %></td>
         <td><%= task.dayassign %></td>
-        <td><%= link_to "Do Task", task_assignments_path(:task_id => task.id),class: "btn  btn-warning"  %></td>
+        
         
       </tr>
     <% end %>

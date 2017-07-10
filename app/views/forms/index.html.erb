@@ -1,15 +1,15 @@
 <%= flash_messages %>
 
 
-<h1>Forms</h1>
+<h1><u>Forms</u></h1>
 
-<table class="table table-striped table-hover ">
-  <thead>
+<table class="table table-striped table-bordered ">
+   <thead class="thead-inverse">
     <tr>
       <th>Form ID</th>
       <th>Form Name</th>
       <th>Attachment</th>
-      <th>Options</th>
+      <th><% if can? :manage, Form %>Options<%end%></th>
     </tr>
   </thead>
 
@@ -19,9 +19,10 @@
         <td><%= form.formid %></td>
         <td><%= form.formname %></td>
        <td><%= link_to "Download Document", form.attachment_url %></td>
-        <td>
+        <td><% if can? :manage, Form %>
         <%= link_to 'Edit', edit_form_path(form) , class: "btn  btn-warning"  %>
-        <%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %></td>
+        <%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+        <%end%></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Form', new_form_path ,class: "btn btn-primary"%>
+<% if can? :manage, Form %><%= link_to 'New Form', new_form_path ,class: "btn btn-primary"%><% end %>

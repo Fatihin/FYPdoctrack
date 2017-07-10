@@ -1,32 +1,36 @@
+<%= form_tag(assignments_path, :method => "get", id: "search-form" , class: 'form-inline') do %>
+<%= text_field_tag :search, params[:search], placeholder: "Track Your Document" , :class =>'form-control'%>
+<%= submit_tag "Search" , class: "btn btn-primary" %>
+<% end %>
 
+<h1><u>Track Results</u></h1>
 
-<h1>Task</h1>
-
-<table class="table table-striped table-hover ">
-  <thead>
+<table class="table table-striped table-bordered ">
+   <thead class="thead-inverse">
     <tr>
-      <th>Request accept</th>
+      <th>Accept</th>
       <th>Location</th>
       <th>Status</th>
       <th>Datecomplete</th>
-      <th>Task</th>
-      <th>Document</th>
-      <th></th>
+      <th>Document </th>
+      <th>Staff </th>
+
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @assignments.each do |assignment| %>
       <tr>
-        <td><%= assignment.request_accept %></td>
+        <td><%= assignment.accept %></td>
         <td><%= assignment.location %></td>
         <td><%= assignment.status %></td>
         <td><%= assignment.datecomplete %></td>
-        <td><%= assignment.task.try(:id) %></td>
-        <td><%= assignment.document_task.document.try(:serialno)%></td>
-        <td><%= link_to "Show", task_assignments_path , class: "btn btn-info"%>
-        <%= link_to 'Edit', edit_task_assignment_path(@task,assignment) , class: "btn  btn-warning"  %>
-        <%= link_to 'Destroy', task_assignment_path(@task,assignment), method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger"%></td>
+        <td><%= assignment.document_task.document.try(:serialno) %></td>
+        <td><%= assignment.document_task.task.user.try(:username) %></td>
+        <td><%= link_to 'Show', assignment %></td>
+        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Assignment', new_task_assignment_path %>
+<%= link_to 'New Assignment', new_assignment_path %>

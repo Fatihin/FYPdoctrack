@@ -13,9 +13,6 @@ class Document < ApplicationRecord
 		self.serialno ="#{user.try(:iduser)}#{form.try(:formid)}%.3d"%id.to_i
 	end
 
-	def self.search(search)
-  		where("documents.serialno LIKE ?", "%#{search}%")
-  	
-	end
+
 
 end

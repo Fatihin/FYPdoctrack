@@ -12,6 +12,7 @@ class Ability
     else
       can :create, Document, user_id:user.id 
       can :read, Document, user_id:user.id
+      can :read, Form, user_id:user.id
 
     end
 

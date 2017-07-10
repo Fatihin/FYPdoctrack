@@ -10,55 +10,87 @@ Hi,<%= current_user.username %>
 
 <li>
 	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
-	<%= link_to 'Submit Document', new_document_path %>
+	<%= link_to new_document_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-cloud-upload"></i> Submit Document
+	<% end %>
+	<%end%>
+
+
+</li>
+
+<li>
+	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
+	<%= link_to documents_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-folder-open"></i> History
+	<% end %>
 	<% end %>
 </li>
 
 <li>
 	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
-	<%= link_to 'Previous Document Submitted', documents_path %>
+	<%= link_to assignments_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-search"></i> Track document
 	<% end %>
+	<%end%>
 </li>
 
 <li>
 	<% unless current_user.try(:admin?) || current_user.try(:staffhep?) %>
-	<%= link_to 'Track Document',documents_trackdoc_path%>
+	<%= link_to forms_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-cloud-download"></i> Download Form
 	<% end %>
+	<%end%>
 </li>
-
 <li>
 	<% if current_user.try(:admin?) %>
-	<%= link_to "List of Form", forms_path  %>
+	<%= link_to forms_path, class: "btn btn-link" do %>
+	<i class="glyphicon glyphicon-file"></i> List of Form
+	<% end %>
 	<% end %> 
 </li>
 
 <li>
 	<% if current_user.try(:admin?) %>
-	<%= link_to "List of Document Submitted", documents_path  %>
+	<%= link_to  documents_path, class: "btn btn-link" do %>
+	<i class="glyphicon glyphicon-list-alt"></i> List of Document
 	<% end %> 
+	<%end%>
 </li>
 
 
 <li>
 	<% if current_user.try(:admin?) %>
- 	<%= link_to 'Assign Task', tasks_path %>
+ 	<%= link_to  tasks_path  , class: "btn btn-link" do%>
+ 	<i class="glyphicon glyphicon-envelope"></i> Task
+	<% end %> 
+	<% end %>
+</li>
+<li>
+	<% if current_user.try(:admin?) %>
+ 	<%= link_to  new_task_path  , class: "btn btn-link" do%>
+ 	<i class="glyphicon glyphicon-pencil"></i> Assign Task
+	<% end %> 
 	<% end %>
 </li>
 
 <li>
 	<% if current_user.try(:admin?) %>
- 	<%= link_to 'Total Days assign', tasks_calculatedayassign_path %>
+ 	<%= link_to tasks_calculatedayassign_path , class: "btn btn-link" do %>
+ 	<i class="glyphicon glyphicon-plus"></i> Total day Assign
+	<% end %> 
 	<% end %>
 </li>
 
 <li>
 	<% if current_user.try(:staffhep?) %>
- 	<%= link_to 'Task', dashboardstaff_homestaff_path%>
+	<%= link_to dashboardstaff_homestaff_path , class: "btn btn-link" do %>
+ 	<i class="glyphicon glyphicon-edit"></i> Task 
+	<% end %> 
 	<% end %>
 </li>
 <li>
 	<% if current_user.try(:staffhep?) %>
- 	<%= link_to 'Document handle', dashboardstaff_index_path%>
+
 	<% end %>
 </li>
 

@@ -17,7 +17,7 @@ class AssignmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create assignment" do
     assert_difference('Assignment.count') do
-      post assignments_url, params: { assignment: { datecomplete: @assignment.datecomplete, location: @assignment.location, request_accept: @assignment.request_accept, status: @assignment.status, task_id: @assignment.task_id } }
+      post assignments_url, params: { assignment: { accept: @assignment.accept, datecomplete: @assignment.datecomplete, document_task_id: @assignment.document_task_id, location: @assignment.location, status: @assignment.status } }
     end
 
     assert_redirected_to assignment_url(Assignment.last)
@@ -34,7 +34,7 @@ class AssignmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update assignment" do
-    patch assignment_url(@assignment), params: { assignment: { datecomplete: @assignment.datecomplete, location: @assignment.location, request_accept: @assignment.request_accept, status: @assignment.status, task_id: @assignment.task_id } }
+    patch assignment_url(@assignment), params: { assignment: { accept: @assignment.accept, datecomplete: @assignment.datecomplete, document_task_id: @assignment.document_task_id, location: @assignment.location, status: @assignment.status } }
     assert_redirected_to assignment_url(@assignment)
   end
 

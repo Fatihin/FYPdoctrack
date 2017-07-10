@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  resources :assignments
   get 'dashboardstaff/index'
   get 'dashboardstaff/homestaff'
+  get 'dashboardstaff/create'
+  get 'dashboardstaff/dotask'
+  resources :document_tasks
 
   
   get 'home/index'
@@ -9,9 +13,7 @@ Rails.application.routes.draw do
   get 'documents/moreinfodoc'
   get 'documents/trackdoc'
 
-  resources :tasks do
-    resources :assignments
-  end
+  resources :tasks 
   resources :forms
   devise_for :users
   resources :documents

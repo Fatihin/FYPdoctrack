@@ -66,20 +66,15 @@ class DocumentsController < ApplicationController
   end
 
   def moreinfodoc
-     @docform = @document.form
-     @formtask = @docform.tasks
+     #@docform = @document.form
+     #@formtask = @docform.tasks
+     @doctask = @document.document_tasks
 
    
   end
 
   def trackdoc
-      @doctask = DocumentTask.joins(:document).where("documents.user_id =?",current_user)
-      @documents = Document.where(user_id: current_user)
-      if params[:search]
-        @documents = Document.search(params[:search]).order("created_at DESC")
-      else
-        @documents = Document.where(user_id: current_user).order('created_at DESC')
-      end
+     
   end
 
 

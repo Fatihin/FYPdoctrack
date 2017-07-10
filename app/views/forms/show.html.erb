@@ -1,24 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%= flash_messages %>
 
-<p>
-  <strong>Formid:</strong>
-  <%= @form.formid %>
-</p>
 
-<p>
-  <strong>Formname:</strong>
-  <%= @form.formname %>
-</p>
+  <table class="table table-bordered">
+    <tr>
+      <th>Form ID</th>
+      <td><%= @form.formid %></td>
+    </tr>
 
-<p>
-  <strong>Details:</strong>
-  <%= @form.details %>
-</p>
+    <tr>
+      <th>Form Name</th>
+      <td><%= @form.formname%></td>
+    </tr>
 
-<p>
-  <strong>Processingday:</strong>
-  <%= @form.processingday %>
-</p>
+    <tr>
+      <th>Attachment</th>
+       <td><%= @form.attachment %></td>
+    </tr>
 
-<%= link_to 'Edit', edit_form_path(@form) %> |
-<%= link_to 'Back', forms_path %>
+  </table>
+

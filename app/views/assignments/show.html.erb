@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Request accept:</strong>
-  <%= @assignment.request_accept %>
+  <strong>Accept:</strong>
+  <%= @assignment.accept %>
 </p>
 
 <p>
@@ -21,9 +21,9 @@
 </p>
 
 <p>
-  <strong>Task:</strong>
-  <%= @assignment.task %>
+  <strong>Document task:</strong>
+  <%= @assignment.document_task %>
 </p>
 
-<%= link_to 'Edit', edit_task_assignment_path(@task,@assignment) %> |
-<%= link_to 'Back', task_assignments_path %>
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>

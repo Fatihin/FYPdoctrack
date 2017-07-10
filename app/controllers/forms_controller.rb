@@ -17,6 +17,10 @@ class FormsController < ApplicationController
   def new
     @form = Form.new
   end
+  
+  def show
+    @form = Form.find(params[:id])
+  end
 
   # GET /forms/1/edit
   def edit

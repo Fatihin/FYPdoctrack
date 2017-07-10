@@ -10,26 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619144407) do
+ActiveRecord::Schema.define(version: 20170709180420) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.boolean  "request_accept"
+    t.boolean  "accept"
     t.string   "location"
     t.string   "status"
     t.datetime "datecomplete"
-    t.integer  "task_id"
+    t.integer  "document_task_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "document_task_id"
     t.index ["document_task_id"], name: "index_assignments_on_document_task_id", using: :btree
-    t.index ["task_id"], name: "index_assignments_on_task_id", using: :btree
   end
 
   create_table "document_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "document_id"
     t.integer  "task_id"
+    t.boolean  "accept"
+    t.string   "status"
+    t.string   "location"
+    t.datetime "datecomplete"
   end
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -101,7 +103,6 @@ ActiveRecord::Schema.define(version: 20170619144407) do
   end
 
   add_foreign_key "assignments", "document_tasks"
-  add_foreign_key "assignments", "tasks"
   add_foreign_key "documents", "forms"
   add_foreign_key "documents", "users"
 end

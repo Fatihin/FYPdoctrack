@@ -1,32 +1,42 @@
 <%= form_tag(documents_trackdoc_path, :method => "get", id: "search-form" , class: 'form-inline') do %>
 <%= text_field_tag :search, params[:search], placeholder: "Track Your Document" , :class =>'form-control'%>
-<%= submit_tag "Search" , class: "btn btn-primary"  %>
+<%= submit_tag "Search" , class: "btn btn-primary" %>
 <% end %>
 
 
+<h1>Assignments</h1>
 
-<h1>Documents Details</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Accept</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Datecomplete</th>
+      <th>Document </th>
+      <th>Staff </th>
 
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<table class="table table-striped table-hover ">
-<% @documents.each do |document| %>
+  <tbody>
+    <% @assignments.each do |assignment| %>
       <tr>
-        <td><%= document.serialno %></td>
-        <td><%= document.title %></td>
-        <td><%= link_to "Download Document", document.attachment_url %></td>
-        <td><%= document.form.try(:formname)%></td>
-        <td><%= document.datesubmit %></td>
-      
-        <td><%= link_to "More", :controller => "documents", :action => "moreinfodoc" ,:id => document.id , :class => "btn btn-info" %></td>
-       
-        <td><%= link_to 'Show', document , class: "btn btn-info"%>
-          <% if can? :manage, Form %>
-            <%= link_to 'Edit', edit_document_path(document), class: "btn  btn-warning" %>
-            <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-          <% end %>
-        </td>
+        <td><%= assignment.accept %></td>
+        <td><%= assignment.location %></td>
+        <td><%= assignment.status %></td>
+        <td><%= assignment.datecomplete %></td>
+        <td><%= assignment.document_task.document.try(:serialno) %></td>
+        <td><%= assignment.document_task.task.user.try(:username) %></td>
+        <td><%= link_to 'Show', assignment %></td>
+        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+  </tbody>
 </table>
 
+<br>
 
+<%= link_to 'New Assignment', new_assignment_path %>
