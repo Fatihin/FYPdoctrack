@@ -8,11 +8,14 @@ class Ability
     elsif user.staffhep?
       can :manage, Document
       can :manage, Task
+      can :manage, Assignment
       
     else
-      can :create, Document, user_id:user.id 
-      can :read, Document, user_id:user.id
+      can :create, Document
+      can :read, Document
+
       can :read, Form, user_id:user.id
+      can :read, Assignment, user_id:user.id
 
     end
 

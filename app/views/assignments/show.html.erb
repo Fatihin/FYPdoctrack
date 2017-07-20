@@ -1,29 +1,30 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_assignment_path(@assignment)  %> |
+<%= link_to 'Back', dashboardstaff_showassignment_path %>
 
-<p>
-  <strong>Accept:</strong>
-  <%= @assignment.accept %>
-</p>
+  <table class="table table-bordered">
+    <tr>
+      <th>Accept:</th>
+      <td><%= @assignment.accept %></td>
+    </tr>
 
-<p>
-  <strong>Location:</strong>
-  <%= @assignment.location %>
-</p>
+    <tr>
+      <th>Location:</th>
+      <td><%= @assignment.location %></td>
+    </tr>
 
-<p>
-  <strong>Status:</strong>
-  <%= @assignment.status %>
-</p>
+      <tr>
+      <th>Status:</th>
+      <td><%= @assignment.status %></td>
+    </tr>
 
-<p>
-  <strong>Datecomplete:</strong>
-  <%= @assignment.datecomplete %>
-</p>
+    <tr>
+      <th>Datecomplete:</th>
+      <td><%=@assignment.datecomplete%></td>
+    </tr>
+    <tr>
+      <th>Document task:</th>
+      <td><%= @assignment.document_task.document.try(:serialno) %></td>
+    </tr>
+    
 
-<p>
-  <strong>Document task:</strong>
-  <%= @assignment.document_task %>
-</p>
-
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
-<%= link_to 'Back', assignments_path %>
+  </table>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'dashboardstaff/homestaff'
   get 'dashboardstaff/create'
   get 'dashboardstaff/dotask'
+  get 'dashboardstaff/showassignment'
+  get 'home/timeline'
   resources :document_tasks
 
   
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
   get 'tasks/calculatedayassign'
   get 'documents/moreinfodoc'
   get 'documents/trackdoc'
+
 
   resources :tasks 
   resources :forms

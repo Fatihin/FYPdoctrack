@@ -1,8 +1,16 @@
 class DashboardstaffController < ApplicationController
   def index
+    @doctask = DocumentTask.all
     @task = Task.new
+
     @form = Form.find(params[:form])
-    @document = Document.where(:form_id => @form)      
+    @document = Document.where(:form_id => @form)
+
+    if @doctask.exists? and @doctask.where(document_id: @document)
+      flash[:notice]= 'hoi'
+    end
+    
+
   end
 
   def homestaff
@@ -25,9 +33,12 @@ class DashboardstaffController < ApplicationController
     @assignment = Assignment.new
     @assignment.document_task_id = @doctask
     @assignment.save
-
-
   end
+
+  def showassignment
+    @assignments = Assignment.all
+  end
+
 
 
 end

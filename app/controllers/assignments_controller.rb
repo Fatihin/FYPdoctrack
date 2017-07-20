@@ -4,11 +4,12 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
-    @assignments = Assignment.all
+
        if params[:search]
         @assignments = Assignment.search(params[:search]).order("created_at DESC")
-      else
-      @assignments = Assignment.all.order('created_at DESC')
+      end
+      if params[:search].present? and @assignments.where(:status =>"complete").present?
+         flash[:notice]= 'You have to take your document at office' 
       end
   end
 
@@ -26,6 +27,10 @@ class AssignmentsController < ApplicationController
   def edit
   end
 
+  def moreinfotask
+    #@assgtask = @assignment.document_task
+    #@doctask = @assgtask.document
+  end
   # POST /assignments
   # POST /assignments.json
   def create
