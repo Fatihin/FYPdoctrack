@@ -1,0 +1,15 @@
+ <%= form_tag(home_KPI_path, :method => "get", id: "search-form" , class: 'form-inline') do %>
+<%= text_field_tag :search, params[:search], placeholder: "Insert staff name", :class =>'form-control'%>
+<%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<br>
+<br>
+    
+
+<centre><h3><u>Task complete</u></h3></centre>
+<% if @doctask.present? %>
+<%= line_chart @doctask.group(:created_at).count %>
+<% else %>
+  <%= flash_messages %>
+<% end %>

@@ -10,12 +10,17 @@ class HomeController < ApplicationController
 
   end
 
-  def timeline
-  	@assignments = Assignment.all
-       if params[:search2]
-        @assignments = Assignment.search(params[:search]).order("created_at DESC")
-      else
-      @assignments = Assignment.all.order('created_at DESC')
+  def KPI
+    if params[:search]
+      @doctask = DocumentTask.search(params[:search])
+    end
+
+    if params[:search].present? 
+         flash[:notice]= 'No record found'
       end
+
   end
+
+
+
 end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'dashboardstaff/create'
   get 'dashboardstaff/dotask'
   get 'dashboardstaff/showassignment'
-  get 'home/timeline'
+  get 'home/KPI'
   resources :document_tasks
 
   

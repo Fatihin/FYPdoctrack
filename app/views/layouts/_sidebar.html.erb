@@ -90,6 +90,14 @@ Hi,<%= current_user.username %>
 </li>
 
 <li>
+	<% if current_user.try(:admin?) %>
+ 	<%= link_to home_KPI_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-search"></i> Task Complete By Staff
+	<% end %>
+	<% end %>
+</li>
+
+<li>
 	<% if current_user.try(:staffhep?) %>
 	<%= link_to dashboardstaff_homestaff_path , class: "btn btn-link" do %>
  	<i class="glyphicon glyphicon-edit"></i> Task 
