@@ -10,7 +10,11 @@ class AssignmentsController < ApplicationController
       end
       if params[:search].present? and @assignments.where(:status =>"complete").present?
          flash[:notice]= 'You have to take your document at office' 
+
+       else
+        flash[:notice]= 'No record found' 
       end
+
   end
 
   # GET /assignments/1
@@ -66,7 +70,7 @@ class AssignmentsController < ApplicationController
   def destroy
     @assignment.destroy
     respond_to do |format|
-      format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
+      format.html { redirect_to dashboardstaff_showassignment_path, notice: 'Assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

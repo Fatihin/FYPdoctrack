@@ -5,7 +5,7 @@
   <div class="form-inputs">
     <%= f.input :accept %>
     <%= f.input :location %>
-    <%= f.input :status %>
+    <%= f.input :status,  collection: ['Processing','Declined','Complete'], selected: 'Processing' %>
     <%= f.input :datecomplete %>
   </div>
 

@@ -7,7 +7,6 @@ class DashboardstaffController < ApplicationController
     @document = Document.where(:form_id => @form)
 
     if @doctask.exists? and @doctask.where(document_id: @document)
-      flash[:notice]= 'hoi'
     end
     
 

@@ -1,5 +1,5 @@
-<%= link_to 'Edit', edit_assignment_path(@assignment)  %> |
-<%= link_to 'Back', dashboardstaff_showassignment_path %>
+<%= link_to 'Edit', edit_assignment_path(@assignment),  class: "btn btn-warning"  %> |
+<%= link_to 'Back', dashboardstaff_showassignment_path , class: "btn btn-primary" %>
 
   <table class="table table-bordered">
     <tr>
@@ -22,7 +22,7 @@
       <td><%=@assignment.datecomplete%></td>
     </tr>
     <tr>
-      <th>Document task:</th>
+      <th>Serial No:</th>
       <td><%= @assignment.document_task.document.try(:serialno) %></td>
     </tr>
     

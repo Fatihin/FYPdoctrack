@@ -39,8 +39,9 @@
   </tbody>
 </table>
 
-<%= flash_messages %>
+
 <br>
 
 <% if can? :manage, Assignment %><%= link_to 'New Assignment', new_assignment_path %><% end %>
 <% end %>
+<%= flash_messages %>

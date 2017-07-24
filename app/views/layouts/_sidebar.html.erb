@@ -92,7 +92,15 @@ Hi,<%= current_user.username %>
 <li>
 	<% if current_user.try(:admin?) %>
  	<%= link_to home_KPI_path , class: "btn btn-link" do%>
-	<i class="glyphicon glyphicon-search"></i> Task Complete By Staff
+	<i class="glyphicon glyphicon-stats"></i> Task Complete By Staff
+	<% end %>
+	<% end %>
+</li>
+
+<li>
+	<% if current_user.try(:admin?) %>
+ 	<%= link_to home_index_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-tasks"></i> Report
 	<% end %>
 	<% end %>
 </li>
@@ -104,9 +112,14 @@ Hi,<%= current_user.username %>
 	<% end %> 
 	<% end %>
 </li>
+
+
+
 <li>
 	<% if current_user.try(:staffhep?) %>
-
+	<%= link_to assignments_path , class: "btn btn-link" do%>
+	<i class="glyphicon glyphicon-search"></i> Track document
+	<% end %>
 	<% end %>
 </li>
 

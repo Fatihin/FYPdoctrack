@@ -23,11 +23,13 @@
         <td><%= link_to "Download Document", document.attachment_url %></td>
         <td><%= document.form.try(:formname)%></td>
         <td><%= document.datesubmit %></td>
-        <td><%= link_to "Do Task", :controller => "dashboardstaff", :action =>"create",:id => document.id  %></td>
+        <td><%= link_to "Do Task", :controller => "dashboardstaff", :action =>"create",:id => document.id  %>
+        </td>
 
 
       </tr>
     <% end %>
   </tbody>
 </table>
+
 
